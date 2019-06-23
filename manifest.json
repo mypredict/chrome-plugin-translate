@@ -1,0 +1,54 @@
+{
+  "manifest_version": 2,
+  "name": "Selected Translation",
+  "version": "1.0",
+  "description": "Translation of English or Chinese",
+  "icons": {
+    "16": "image/icon.ico",
+    "48": "image/icon.ico",
+    "128": "image/icon.ico"
+  },
+  "background": {
+    "page": "background.html"
+  },
+  "permissions": [
+    "contextMenus",
+    "tabs",
+    "notifications",
+    "webRequest",
+    "webRequestBlocking",
+    "storage",
+    "http://*/",
+    "https://*/",
+    "chrome://extensions/"
+  ],
+  "web_accessible_resources": ["js/inject.js"],
+  "homepage_url": "https://www.baidu.com",
+  "options_ui": {
+    "page": "options.html",
+    "chrome_style": true
+  },
+  "browser_action": {
+    "default_icon": "image/icon.ico",
+    "default_title": "中英文翻译",
+    "default_popup": "popup.html"
+  },
+  "page_action": {
+    "default_icon": "image/icon.ico",
+    "default_title": "中英文翻译",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["js/content-script.js"],
+      "css": ["css/custom.css"],
+      "run_at": "document_start"
+    },
+    {
+      "matches": ["*://*/*.png", "*://*/*.jpg", "*://*/*.gif", "*://*/*.bmp"],
+      "js": ["js/show-image-content-size.js"]
+    }
+  ],
+  "default_locale": "zh_CN"
+}
